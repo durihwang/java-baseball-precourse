@@ -4,17 +4,68 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class NumberBaseballModel {
 
-    public String createComputerNumber() {
+    public int[] createComputerNumber() {
 
         // 3개의 숫자 생성
-        String number1 = String.valueOf(Randoms.pickNumberInRange(1, 9));
-        String number2 = String.valueOf(Randoms.pickNumberInRange(1, 9));
-        String number3 = String.valueOf(Randoms.pickNumberInRange(1, 9));
+        int[] computerNumberArray = new int[3];
+        computerNumberArray[0] = Randoms.pickNumberInRange(1, 9);
 
-        return number1 + number2 + number3;
+        computerNumberArray[1] = Randoms.pickNumberInRange(1, 9);
+        while (computerNumberArray[0] == computerNumberArray[1]) {
+            computerNumberArray[1] = Randoms.pickNumberInRange(1, 9);
+        }
+
+        computerNumberArray[2] = Randoms.pickNumberInRange(1, 9);
+        while (computerNumberArray[0] == computerNumberArray[2]
+                || computerNumberArray[1] == computerNumberArray[2]) {
+            computerNumberArray[2] = Randoms.pickNumberInRange(1, 9);
+        }
+
+        return computerNumberArray;
     }
 
-    public void verifyNumber(String computerNumber, String userNumber) {
+    public int[] verifyNumber(int[] computerNumberArray, int[] userNumberArray) {
 
+        int[] countArray = new int[2];
+        int strikeCount = 0;
+        int ballCount = 0;
+
+        for (int i = 0; i < userNumberArray.length; i++) {
+            strikeCount += checkStrike(userNumberArray[i], computerNumberArray[i]);
+            ballCount += checkBall(computerNumberArray, userNumberArray[i], i);
+        }
+
+        countArray[0] = strikeCount;
+        countArray[1] = ballCount;
+
+        return countArray;
+    }
+
+    private int checkStrike(int computerNumber, int userNumber) {
+
+        if (computerNumber == userNumber) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    private int checkBall(int[] computerNumberArray, int userNumber, int index) {
+
+        int checkBallCount = 0;
+
+        for (int i = 0; i < computerNumberArray.length; i++) {
+            checkBallCount += isBall(computerNumberArray[i], userNumber, i, index);
+        }
+
+        return checkBallCount;
+    }
+
+    private int isBall(int computerNumber, int userNumber, int computerIndex, int userIndex) {
+        if (computerIndex != userIndex && computerNumber == userNumber) {
+            return 1;
+        }
+
+        return 0;
     }
 }
