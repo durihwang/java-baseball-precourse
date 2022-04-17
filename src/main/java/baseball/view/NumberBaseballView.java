@@ -28,6 +28,13 @@ public class NumberBaseballView {
             throw new IllegalArgumentException("잘못된 값을 입력하셨습니다.");
         }
 
+        // 같은 숫자인지 체크
+        if (userNumber.charAt(0) == userNumber.charAt(1)
+                || userNumber.charAt(0) == userNumber.charAt(2)
+                || userNumber.charAt(2) == userNumber.charAt(1)) {
+            throw new IllegalArgumentException("잘못된 값을 입력하셨습니다.");
+        }
+
         char[] charArray = userNumber.toCharArray();
         userNumberArray[0] = charArray[0] - '0';
         userNumberArray[1] = charArray[1] - '0';

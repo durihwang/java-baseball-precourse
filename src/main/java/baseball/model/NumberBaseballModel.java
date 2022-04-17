@@ -26,6 +26,10 @@ public class NumberBaseballModel {
 
     public int[] verifyNumber(int[] computerNumberArray, int[] userNumberArray) {
 
+        if (computerNumberArray.length != 3 || userNumberArray.length != 3) {
+            throw new IllegalArgumentException("잘못된 값을 입력하셨습니다.");
+        }
+
         int[] countArray = new int[2];
         int strikeCount = 0;
         int ballCount = 0;
