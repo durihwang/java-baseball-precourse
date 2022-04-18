@@ -30,6 +30,20 @@ public class NumberBaseballModel {
             throw new IllegalArgumentException("잘못된 값을 입력하셨습니다.");
         }
 
+        // 같은 숫자인지 체크
+        if (userNumberArray[0] == userNumberArray[1]
+                || userNumberArray[0] == userNumberArray[2]
+                || userNumberArray[1] == userNumberArray[2]) {
+            throw new IllegalArgumentException("잘못된 값을 입력하셨습니다.");
+        }
+
+        // 같은 숫자인지 체크
+        if (computerNumberArray[0] == computerNumberArray[1]
+                || computerNumberArray[0] == computerNumberArray[2]
+                || computerNumberArray[1] == computerNumberArray[2]) {
+            throw new IllegalArgumentException("잘못된 값을 입력하셨습니다.");
+        }
+
         int[] countArray = new int[2];
         int strikeCount = 0;
         int ballCount = 0;

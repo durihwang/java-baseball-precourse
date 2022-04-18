@@ -49,7 +49,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 검증_테스트_예외() {
+    void 검증_테스트_자릿수_예외() {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             int[] computerNumberArray = {5, 3, 7, 2};
@@ -58,5 +58,30 @@ class ApplicationTest extends NsTest {
             NumberBaseballModel numberBaseballModel = new NumberBaseballModel();
             int[] ints = numberBaseballModel.verifyNumber(computerNumberArray, userNumberArray);
         });
+    }
+
+    @Test
+    void 검증_테스트_같은숫자_예외() {
+
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            int[] computerNumberArray = {5, 5, 5};
+            int[] userNumberArray = {5, 1, 3};
+
+            NumberBaseballModel numberBaseballModel = new NumberBaseballModel();
+            int[] ints = numberBaseballModel.verifyNumber(computerNumberArray, userNumberArray);
+        });
+    }
+
+    @Test
+    void 검증_테스트_낫싱() {
+
+        int[] computerNumberArray = {5, 2, 7};
+        int[] userNumberArray = {1, 9, 3};
+
+        NumberBaseballModel numberBaseballModel = new NumberBaseballModel();
+        int[] ints = numberBaseballModel.verifyNumber(computerNumberArray, userNumberArray);
+
+        Assertions.assertThat(ints[0]).isEqualTo(0);
+        Assertions.assertThat(ints[1]).isEqualTo(0);
     }
 }

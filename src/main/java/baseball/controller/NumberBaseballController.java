@@ -10,6 +10,7 @@ public class NumberBaseballController {
 
     public void run() {
 
+        // model, view 초기화
         NumberBaseballModel numberBaseballModel = new NumberBaseballModel();
         NumberBaseballView numberBaseballView = new NumberBaseballView();
 
