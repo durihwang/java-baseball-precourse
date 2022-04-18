@@ -83,5 +83,6 @@ class ApplicationTest extends NsTest {
 
         Assertions.assertThat(ints[0]).isEqualTo(0);
         Assertions.assertThat(ints[1]).isEqualTo(0);
+
     }
 }
